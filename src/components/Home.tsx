@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Linkedin, Github, FileText, ArrowDownToLine, X, Award, Briefcase, Mail, MapPin } from 'lucide-react';
+import { Linkedin, Github, FileText, ArrowDownToLine, X, Award, Briefcase, Mail, MapPin, ArrowRight, Globe, ShieldCheck } from 'lucide-react';
 
 interface HomeProps {
   colorHex: string;
@@ -12,185 +12,298 @@ export default function Home({ colorHex }: HomeProps) {
   const socials = [
     { icon: <Linkedin className="h-5 w-5" />, url: 'https://linkedin.com/', label: 'LinkedIn' },
     { icon: <Github className="h-5 w-5" />, url: 'https://github.com/amanprincek', label: 'GitHub' },
+    { icon: <Globe className="h-5 w-5" />, url: '#', label: 'Portfolio' },
+    { icon: <Mail className="h-5 w-5" />, url: 'mailto:amtech11083@gmail.com', label: 'Email' },
   ];
 
+  const handleScrollToProjects = () => {
+    const target = document.querySelector('#projects');
+    if (target) {
+      const offset = 85;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = target.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <section id="home" className="home relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
-      <div className="mx-auto max-w-7xl w-full px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+    <section id="home" className="home relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#06070a]">
+      {/* Background Star Ambient Dust */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0f0c1b]/30 via-transparent to-transparent pointer-events-none" />
+
+      <div className="mx-auto max-w-7xl w-full px-6 sm:px-10 relative z-10 flex flex-col items-center">
         
-        {/* Left Intro Text Column */}
-        <div className="lg:col-span-7 flex flex-col justify-center text-left">
+        {/* Main 3-Column Responsive Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center w-full min-h-[70vh]">
           
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="home__greeting text-xs sm:text-sm font-mono tracking-[0.25em] uppercase text-slate-400 mb-3 flex items-center gap-2"
-          >
-            <span className="w-8 h-[1px]" style={{ backgroundColor: colorHex }} />
-            Hello, I'm
-          </motion.p>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="home__name text-5xl sm:text-7xl lg:text-8xl font-black font-display tracking-tight text-white leading-[0.95]"
-          >
-            Aman <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/85 to-white/70">Kumar</span>
-          </motion.h1>
-
-          {/* profession text blocks */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 flex flex-wrap items-center gap-3 text-lg sm:text-xl md:text-2xl font-display font-medium text-slate-300"
-          >
-            <span className="home__split text-slate-400 uppercase tracking-widest text-xs font-mono border border-white/5 bg-white/[0.02] px-3 py-1 rounded-md">
-              Intern @URV Spain 🇪🇸
-            </span>
-            <div className="flex items-center gap-2">
-              <span className="home__profession-1 text-white">Frontend Developer</span> 
-              <span className="text-xs font-mono" style={{ color: colorHex }}>&amp;</span>
-              <span className="home__profession-2" style={{ color: colorHex }}>Python Developer</span>
-            </div>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6 text-sm sm:text-base text-slate-400 leading-relaxed max-w-lg font-sans font-light"
-          >
-            Computer Science (AI & ML) student at UNITED College of Engineering and Research. Skilled in Python and Frontend development, passionate about building reactive web apps and exploring intelligent models.
-          </motion.p>
-
-          {/* Social icons + CV action */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-10 flex flex-wrap items-center gap-5 sm:gap-8"
-          >
-            {/* Resume Button */}
-            <button
-              onClick={() => setShowResume(true)}
-              className="home__cv group flex items-center gap-2.5 rounded-2xl px-8 py-4 font-bold text-xs uppercase tracking-widest text-black shadow-lg transition-all hover:scale-[1.03] active:scale-[0.98]"
+          {/* COLUMN 1: LEFT-HAND INTRO (lg:col-span-4) */}
+          <div className="lg:col-span-4 flex flex-col justify-center text-left space-y-6 lg:pr-6 order-2 lg:order-1">
+            
+            {/* badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-mono tracking-wider border bg-white/[0.02]/30 w-fit backdrop-blur-sm"
               style={{
-                backgroundColor: colorHex,
-                boxShadow: `0 10px 30px ${colorHex}30`
+                borderColor: `${colorHex}25`,
+                boxShadow: `0 0 15px ${colorHex}08`
               }}
             >
-              <FileText className="h-4 w-4" />
-              Resume
-            </button>
+              <span className="flex h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-slate-300 font-medium">Hello, I'm 👋</span>
+            </motion.div>
 
-            {/* Social icons container */}
-            <div className="home__social flex items-center gap-3">
+            {/* title */}
+            <div className="space-y-1">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-5xl sm:text-7xl font-black font-display tracking-tight text-white leading-[0.95]"
+              >
+                Aman
+              </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="text-5xl sm:text-7xl font-black font-display tracking-tight text-transparent bg-clip-text leading-[0.95]"
+                style={{
+                  backgroundImage: `linear-gradient(to right, #ffffff 10%, ${colorHex}e0 90%)`
+                }}
+              >
+                Kumar
+              </motion.h1>
+            </div>
+
+            {/* description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-sm sm:text-base text-slate-400 leading-relaxed font-sans font-light max-w-sm"
+            >
+              I craft beautiful, scalable and user-centric digital experiences.
+            </motion.p>
+
+            {/* action buttons Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-wrap items-center gap-4 pt-2"
+            >
+              <button
+                onClick={() => setShowResume(true)}
+                className="group flex items-center gap-2 rounded-2xl px-6 py-3 px-7 py-3.5 font-bold text-xs uppercase tracking-widest text-black shadow-lg transition-all hover:scale-[1.03] active:scale-[0.98]"
+                style={{
+                  backgroundColor: colorHex,
+                  boxShadow: `0 10px 30px ${colorHex}30`
+                }}
+              >
+                <FileText className="h-4 w-4" />
+                Resume / CV
+              </button>
+            </motion.div>
+
+            {/* Social sidebar/footer row inside Column 1 */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex items-center gap-3 pt-6 border-t border-white/5 w-fit"
+            >
               {socials.map((soc, idx) => (
                 <a
                   key={idx}
                   href={soc.url}
-                  target="_blank"
+                  target={soc.url !== '#' ? '_blank' : '_self'}
                   rel="noreferrer referrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/5 bg-white/[0.03] text-slate-400 transition-all hover:border-white/20 hover:text-white hover:scale-115"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/5 bg-[#0a0b10] text-slate-400 transition-all hover:border-white/10 hover:text-white hover:scale-105"
                   title={soc.label}
                   aria-label={`Visit Aman's ${soc.label}`}
                 >
                   {soc.icon}
                 </a>
               ))}
+            </motion.div>
+
+          </div>
+
+          {/* COLUMN 2: CENTERED PROFILE PORTRAIT (lg:col-span-4) */}
+          <div className="lg:col-span-4 flex justify-center items-center relative py-8 order-1 lg:order-2">
+            
+            {/* Concentric space glowing orbits */}
+            <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+              
+              {/* Spinning slow outer orbit */}
+              <div 
+                className="absolute h-[340px] w-[340px] sm:h-[420px] sm:w-[420px] rounded-full border border-dashed border-white/5 animate-spin-slow"
+                style={{ animationDuration: '60s' }}
+              />
+              {/* Counter-spinning inner orbit */}
+              <div 
+                className="absolute h-[260px] w-[260px] sm:h-[320px] sm:w-[320px] rounded-full border border-double border-white/5 animate-spin-slow pb-2"
+                style={{ animationDuration: '30s', animationDirection: 'reverse' }}
+              />
+              
+              {/* High-glow core back light */}
+              <div 
+                className="absolute h-48 w-48 sm:h-64 sm:w-64 rounded-full filter blur-3xl opacity-30 mix-blend-screen transition-all duration-1000"
+                style={{
+                  backgroundColor: colorHex,
+                  boxShadow: `0 0 100px ${colorHex}50`
+                }}
+              />
             </div>
-          </motion.div>
-        </div>
 
-        {/* Right Geometric Accent Column */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-end">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px] rounded-3xl"
-          >
-            {/* Outer rotating decorative elements */}
-            <div 
-              className="absolute inset-0 rounded-full border border-dashed border-white/10 animate-spin-slow transition-colors"
-              style={{ animationDuration: '40s' }}
-            />
-            <div 
-              className="absolute inset-[20px] rounded-full border border-double border-white/5 animate-spin-slow transition-all"
-              style={{ animationDuration: '25s', animationDirection: 'reverse' }}
-            />
+            {/* Portrait Frame */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="relative z-10 w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] flex items-end justify-center rounded-full overflow-hidden border-2 border-white/5 shadow-2xl bg-[#08090d]/60 backdrop-blur-[2px]"
+              style={{
+                boxShadow: `0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px ${colorHex}15`
+              }}
+            >
+              {/* Backside violet backdrop in the container */}
+              <div 
+                className="absolute inset-x-0 top-1/4 bottom-0 filter blur-xl opacity-20"
+                style={{ background: `radial-gradient(circle, ${colorHex}a0 0%, transparent 80%)` }}
+              />
 
-            {/* Core glowing organic floating card */}
-            <div className="absolute inset-12 rounded-3xl bg-[#111216]/50 border border-white/5 flex flex-col justify-between p-6 sm:p-8 backdrop-blur-md shadow-2xl">
-              <div className="flex items-start justify-between">
-                <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase">
-                  Available for Internships
+              {/* Developer Image */}
+              <img
+                src="/src/assets/images/Gemini_Generated_Image_6xvi296xvi296xvi (1).png"
+                alt="Aman Kumar Portrait"
+                className="w-full h-full object-cover origin-bottom scale-[1.05] transition-transform duration-700 hover:scale-[1.1]"
+                referrerPolicy="no-referrer"
+              />
+
+              {/* Smooth linear gradient overlay at the bottom to blend image cleanly */}
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#06070a] via-[#06070a]/70 to-transparent z-10 pointer-events-none" />
+            </motion.div>
+
+          </div>
+
+          {/* COLUMN 3: RIGHT-HAND INTRO (lg:col-span-4) */}
+          <div className="lg:col-span-4 flex flex-col justify-center text-left lg:text-left space-y-6 lg:pl-6 order-3">
+            
+            {/* custom theme tag */}
+            <motion.p
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-xs font-mono uppercase tracking-[0.25em]"
+              style={{ color: colorHex }}
+            >
+              Creative
+            </motion.p>
+
+            {/* title */}
+            <div className="space-y-1">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-white leading-[1.05]"
+              >
+                Developer
+              </motion.h2>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-transparent bg-clip-text leading-[1.05]"
+                style={{
+                  backgroundImage: `linear-gradient(to right, #ffffff, ${colorHex}d0)`
+                }}
+              >
+                &amp; Designer
+              </motion.h2>
+            </div>
+
+            {/* description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-sm sm:text-base text-slate-400 leading-relaxed font-sans font-light max-w-sm"
+            >
+              Passionate about building exceptional web experiences with modern technologies and clean code.
+            </motion.p>
+
+            {/* view work link */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="pt-2"
+            >
+              <button
+                onClick={handleScrollToProjects}
+                className="group inline-flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 px-6 py-4 text-xs tracking-widest font-bold uppercase text-slate-100 transition-all hover:scale-102 active:scale-98"
+                style={{
+                  borderColor: `${colorHex}15`
+                }}
+              >
+                View My Work
+                <ArrowRight 
+                  className="h-4 w-4 text-slate-400 group-hover:text-white transition-all transform group-hover:translate-x-1"
+                  style={{ color: colorHex }}
+                />
+              </button>
+            </motion.div>
+
+            {/* Open to Work floating card on bottom right */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.45 }}
+              className="pt-6 border-t border-white/5 flex flex-col space-y-1.5"
+            >
+              <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-white font-mono">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                <span className="flex h-2.5 w-2.5 rounded-full" style={{ backgroundColor: colorHex, boxShadow: `0 0 10px ${colorHex}` }} />
+                <span>Available for new opportunities</span>
               </div>
+              <span className="text-sm font-black uppercase tracking-wider font-display" style={{ color: colorHex }}>
+                Open to work
+              </span>
+            </motion.div>
 
-              {/* Graphical Avatar placeholder / Sculpture */}
-              <div className="my-auto flex flex-col items-center py-4">
-                <div className="relative">
-                  {/* Backdrop light */}
-                  <div 
-                    className="absolute -inset-2 rounded-full opacity-10 filter blur-md transition-colors"
-                    style={{ backgroundColor: colorHex }}
-                  />
-                  <div className="relative h-20 w-20 sm:h-24 sm:w-24 rounded-full border-2 border-white/10 bg-[#16171b] flex items-center justify-center p-2">
-                    {/* Unique initial symbol */}
-                    <span 
-                      className="text-4xl sm:text-5xl font-black tracking-tighter" 
-                      style={{ color: colorHex, fontFamily: 'var(--font-display)' }}
-                    >
-                      A
-                    </span>
-                  </div>
-                </div>
-                <h3 className="mt-4 text-lg font-bold text-white tracking-wide font-display">Aman Kumar</h3>
-                <p className="text-xs text-slate-400 font-mono mt-1">Computer Science Student</p>
-              </div>
+          </div>
 
-              {/* Status footer with monospace parameters */}
-              <div className="flex justify-between text-[11px] font-mono text-slate-500">
-                <div className="flex flex-col">
-                  <span>FOCUS</span>
-                  <span className="text-slate-300 font-semibold text-xs mt-0.5">AI &amp; ML</span>
-                </div>
-                <div className="flex flex-col text-right">
-                  <span>LOC</span>
-                  <span className="text-slate-300 font-semibold text-xs mt-0.5"> Prayagraj, IN</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Micro accent cards floating */}
-            <div className="absolute -top-3 left-4 rounded-xl bg-[#0f1115]/90 border border-white/10 px-4 py-2.5 shadow-xl backdrop-blur-sm flex items-center gap-2">
-              <span className="text-xs" style={{ color: colorHex }}>✦</span>
-              <span className="text-[11px] font-mono text-slate-300 font-medium tracking-wide">Intern @URV Spain</span>
-            </div>
-
-            <div className="absolute -bottom-3 right-6 rounded-xl bg-[#0f1115]/90 border border-white/10 px-4 py-2.5 shadow-xl backdrop-blur-sm flex items-center gap-2">
-              <span className="text-xs" style={{ color: colorHex }}>⚡</span>
-              <span className="text-[11px] font-mono text-slate-300 font-medium tracking-wide">MeghVaani Weather App</span>
-            </div>
-          </motion.div>
         </div>
+
       </div>
+
+      {/* CURVED BOTTOM DECORATIVE DIVISION HORIZON */}
+      <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-black to-transparent pointer-events-none" />
 
       {/* RESUME VIEWER MODAL */}
       <AnimatePresence>
         {showResume && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="relative w-full max-w-3xl rounded-3xl border border-white/10 bg-[#0f1115] p-6 sm:p-10 shadow-2xl max-h-[85vh] overflow-y-auto"
+              className="relative w-full max-w-3xl rounded-3xl border border-white/10 bg-[#0c0d10] p-6 sm:p-10 shadow-2xl max-h-[85vh] overflow-y-auto"
+              style={{
+                borderColor: `${colorHex}20`,
+                boxShadow: `0 25px 70px rgba(0,0,0,0.9), 0 0 30px ${colorHex}10`
+              }}
             >
               {/* Close Button */}
               <button
@@ -215,7 +328,7 @@ export default function Home({ colorHex }: HomeProps) {
                     onClick={() => {
                       window.print();
                     }}
-                    className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 px-4 py-2 text-xs font-bold text-gray-300 transition-all hover:bg-white/10 hover:text-white"
+                    className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 px-4 py-2.5 text-xs font-bold text-gray-300 transition-all hover:bg-white/10 hover:text-white"
                   >
                     <ArrowDownToLine className="h-4 w-4" />
                     Print Resume
@@ -256,6 +369,16 @@ export default function Home({ colorHex }: HomeProps) {
                       <div className="space-y-4">
                         <div>
                           <div className="flex justify-between items-baseline">
+                            <h5 className="font-bold text-white text-sm">Google Ambassador — Cloud Facilitator</h5>
+                            <span className="text-xs font-mono text-slate-500">2025 - Present</span>
+                          </div>
+                          <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                            Selected as Google Cloud Ambassador. Conducted interactive workshops on prompt engineering parameters (temperature tuning, model selection) and GenAI Studio playgrounds.
+                          </p>
+                        </div>
+
+                        <div>
+                          <div className="flex justify-between items-baseline">
                             <h5 className="font-bold text-white text-sm">Academic Intern — URV, Spain 🇪🇸</h5>
                             <span className="text-xs font-mono text-slate-500">Mar 2026</span>
                           </div>
@@ -271,16 +394,6 @@ export default function Home({ colorHex }: HomeProps) {
                           </div>
                           <p className="text-xs text-slate-400 mt-1 leading-relaxed">
                             Practiced network design, secure database operations, Java app layouts, and fully completed multiple technical web certifications with ethical hacking workflows.
-                          </p>
-                        </div>
-
-                        <div>
-                          <div className="flex justify-between items-baseline">
-                            <h5 className="font-bold text-white text-sm">Apprenticeship Trainee — IBM Developer Skills</h5>
-                            <span className="text-xs font-mono text-slate-500">Aug 2025 - Sep 2025</span>
-                          </div>
-                          <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                            Completed virtual IBM project-based training, designing and delivering 'MeghVaani' weather forecasting site featuring interactive React maps.
                           </p>
                         </div>
                       </div>
@@ -306,7 +419,10 @@ export default function Home({ colorHex }: HomeProps) {
                 </div>
 
                 <div className="text-center pt-4 border-t border-white/5">
-                  <p className="text-[10px] text-slate-500">Aman Kumar — Portforlio | Built with React, Vite &amp; Tailwind</p>
+                  <p className="text-[10px] text-slate-500 flex items-center justify-center gap-1">
+                    <ShieldCheck className="h-3.5 w-3.5" style={{ color: colorHex }} />
+                    Verified Sandbox Credentials — Portforlio | React, Vite &amp; Tailwind
+                  </p>
                 </div>
               </div>
             </motion.div>

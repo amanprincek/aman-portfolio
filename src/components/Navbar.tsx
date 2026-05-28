@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, MessageSquare } from 'lucide-react';
 
 interface NavbarProps {
   colorHex: string;
@@ -15,7 +15,7 @@ export default function Navbar({ colorHex }: NavbarProps) {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['home', 'about', 'projects', 'contact'];
+      const sections = ['home', 'about', 'projects', 'services', 'contact'];
       let current = 'home';
 
       for (const section of sections) {
@@ -36,8 +36,9 @@ export default function Navbar({ colorHex }: NavbarProps) {
   }, []);
 
   const navLinks = [
-    { label: 'About Us', href: '#about', id: 'about' },
+    { label: 'About Me', href: '#about', id: 'about' },
     { label: 'Projects', href: '#projects', id: 'projects' },
+    { label: 'Skills', href: '#services', id: 'services' },
     { label: 'Contact', href: '#contact', id: 'contact' },
   ];
 
@@ -46,7 +47,7 @@ export default function Navbar({ colorHex }: NavbarProps) {
     setMobileMenuOpen(false);
     const target = document.querySelector(href);
     if (target) {
-      const offset = 80; // height of navbar
+      const offset = 85; // height of navbar
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = target.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -64,7 +65,7 @@ export default function Navbar({ colorHex }: NavbarProps) {
       id="header"
       className={`header fixed top-0 left-0 z-30 w-full font-display border-b transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#0c0d10]/80 border-white/5 backdrop-blur-md py-4'
+          ? 'bg-[#06070a]/90 border-white/5 backdrop-blur-md py-4'
           : 'bg-transparent border-transparent py-6'
       }`}
     >
@@ -73,17 +74,25 @@ export default function Navbar({ colorHex }: NavbarProps) {
         <a
           href="#home"
           onClick={(e) => handleLinkClick(e, '#home')}
-          className="nav__logo group text-2xl font-extrabold tracking-wider text-white transition-opacity hover:opacity-90"
+          className="nav__logo group flex items-center gap-2.5 text-xl sm:text-2xl font-black tracking-wide text-white transition-opacity hover:opacity-95"
         >
-          Aman
-          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" style={{ color: colorHex }}>
-            .
-          </span>
+          <div 
+            className="flex h-9 w-9 items-center justify-center rounded-full text-base font-black transition-all duration-500 group-hover:rotate-12 group-hover:scale-105"
+            style={{ 
+              background: `radial-gradient(circle, ${colorHex}40 0%, #0c0d10 100%)`, 
+              border: `1px solid ${colorHex}40`,
+              boxShadow: `0 0 15px ${colorHex}30`,
+              color: colorHex
+            }}
+          >
+            A
+          </div>
+          <span className="font-display font-black tracking-tight">Aman</span>
         </a>
 
         {/* DESKTOP NAV */}
         <nav className="hidden md:flex items-center gap-10">
-          <ul className="flex items-center gap-10">
+          <ul className="flex items-center gap-8">
             {navLinks.map((link) => {
               const active = activeSection === link.id;
               return (
@@ -91,7 +100,7 @@ export default function Navbar({ colorHex }: NavbarProps) {
                   <a
                     href={link.href}
                     onClick={(e) => handleLinkClick(e, link.href)}
-                    className="nav__link relative block py-2 text-sm font-medium tracking-wide text-gray-300 transition-colors uppercase hover:text-white"
+                    className="nav__link relative block py-2 text-xs font-semibold tracking-wider text-slate-300 transition-colors uppercase hover:text-white"
                   >
                     {link.label}
                     {active && (
@@ -112,13 +121,15 @@ export default function Navbar({ colorHex }: NavbarProps) {
           <a
             href="#contact"
             onClick={(e) => handleLinkClick(e, '#contact')}
-            className="flex items-center gap-1.5 rounded-full px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white border border-white/10 bg-white/5 transition-all duration-300 hover:border-white/20 hover:bg-white/10"
+            className="flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-slate-100 border border-white/10 bg-[#0c0d10]/40 transition-all duration-300 hover:border-white/20 hover:scale-102 hover:bg-[#0c0d10]/60"
             style={{
-              boxShadow: `0 0 15px ${colorHex}08`,
+              borderColor: `${colorHex}15`,
+              boxShadow: `0 0 15px ${colorHex}10`,
             }}
           >
+            <MessageSquare className="h-4 w-4 text-slate-400" style={{ color: `${colorHex}c0` }} />
             Let's Talk
-            <ArrowUpRight className="h-3.5 w-3.5" style={{ color: colorHex }} />
+            <ArrowUpRight className="h-4 w-4 text-slate-400" />
           </a>
         </nav>
 
