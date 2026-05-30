@@ -182,7 +182,7 @@ export default function Home({ colorHex }: HomeProps) {
 
               {/* Developer Image */}
               <img
-                src="/src/assets/images/Gemini_Generated_Image_6xvi296xvi296xvi (1).png"
+                src="/src/assets/images/aman_portrait_matching_glow_1779969253455.png"
                 alt="Aman Kumar Portrait"
                 className="w-full h-full object-cover origin-bottom scale-[1.05] transition-transform duration-700 hover:scale-[1.1]"
                 referrerPolicy="no-referrer"
