@@ -37,254 +37,238 @@ export default function Home({ colorHex }: HomeProps) {
       {/* Background Star Ambient Dust */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0f0c1b]/30 via-transparent to-transparent pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl w-full px-6 sm:px-10 relative z-10 flex flex-col items-center">
+      <div className="mx-auto max-w-6xl w-full px-6 sm:px-10 relative z-10 flex flex-col items-center text-center space-y-12">
         
-        {/* Main 3-Column Responsive Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center w-full min-h-[70vh]">
-          
-          {/* COLUMN 1: LEFT-HAND INTRO (lg:col-span-4) */}
-          <div className="lg:col-span-4 flex flex-col justify-center text-left space-y-6 lg:pr-6 order-2 lg:order-1">
-            
-            {/* badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-mono tracking-wider border bg-white/[0.02]/30 w-fit backdrop-blur-sm"
-              style={{
-                borderColor: `${colorHex}25`,
-                boxShadow: `0 0 15px ${colorHex}08`
-              }}
-            >
-              <span className="flex h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-slate-300 font-medium">Hello, I'm 👋</span>
-            </motion.div>
+        {/* Pulsing Badges Group */}
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-mono tracking-wider border bg-white/[0.02]/30 backdrop-blur-sm"
+            style={{
+              borderColor: `${colorHex}25`,
+              boxShadow: `0 0 15px ${colorHex}08`
+            }}
+          >
+            <span className="flex h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-slate-300 font-medium font-mono">Academic Intern @ URV, Spain 🇪🇸</span>
+          </motion.div>
 
-            {/* title */}
-            <div className="space-y-1">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-5xl sm:text-7xl font-black font-display tracking-tight text-white leading-[0.95]"
-              >
-                Aman
-              </motion.h1>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-5xl sm:text-7xl font-black font-display tracking-tight text-transparent bg-clip-text leading-[0.95]"
-                style={{
-                  backgroundImage: `linear-gradient(to right, #ffffff 10%, ${colorHex}e0 90%)`
-                }}
-              >
-                Kumar
-              </motion.h1>
-            </div>
-
-            {/* description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-sm sm:text-base text-slate-400 leading-relaxed font-sans font-light max-w-sm"
-            >
-              I craft beautiful, scalable and user-centric digital experiences.
-            </motion.p>
-
-            {/* action buttons Row */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-4 pt-2"
-            >
-              <button
-                onClick={() => setShowResume(true)}
-                className="group flex items-center gap-2 rounded-2xl px-6 py-3 px-7 py-3.5 font-bold text-xs uppercase tracking-widest text-black shadow-lg transition-all hover:scale-[1.03] active:scale-[0.98]"
-                style={{
-                  backgroundColor: colorHex,
-                  boxShadow: `0 10px 30px ${colorHex}30`
-                }}
-              >
-                <FileText className="h-4 w-4" />
-                Resume / CV
-              </button>
-            </motion.div>
-
-            {/* Social sidebar/footer row inside Column 1 */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex items-center gap-3 pt-6 border-t border-white/5 w-fit"
-            >
-              {socials.map((soc, idx) => (
-                <a
-                  key={idx}
-                  href={soc.url}
-                  target={soc.url !== '#' ? '_blank' : '_self'}
-                  rel="noreferrer referrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/5 bg-[#0a0b10] text-slate-400 transition-all hover:border-white/10 hover:text-white hover:scale-105"
-                  title={soc.label}
-                  aria-label={`Visit Aman's ${soc.label}`}
-                >
-                  {soc.icon}
-                </a>
-              ))}
-            </motion.div>
-
-          </div>
-
-          {/* COLUMN 2: CENTERED PROFILE PORTRAIT (lg:col-span-4) */}
-          <div className="lg:col-span-4 flex justify-center items-center relative py-8 order-1 lg:order-2">
-            
-            {/* Concentric space glowing orbits */}
-            <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
-              
-              {/* Spinning slow outer orbit */}
-              <div 
-                className="absolute h-[340px] w-[340px] sm:h-[420px] sm:w-[420px] rounded-full border border-dashed border-white/5 animate-spin-slow"
-                style={{ animationDuration: '60s' }}
-              />
-              {/* Counter-spinning inner orbit */}
-              <div 
-                className="absolute h-[260px] w-[260px] sm:h-[320px] sm:w-[320px] rounded-full border border-double border-white/5 animate-spin-slow pb-2"
-                style={{ animationDuration: '30s', animationDirection: 'reverse' }}
-              />
-              
-              {/* High-glow core back light */}
-              <div 
-                className="absolute h-48 w-48 sm:h-64 sm:w-64 rounded-full filter blur-3xl opacity-30 mix-blend-screen transition-all duration-1000"
-                style={{
-                  backgroundColor: colorHex,
-                  boxShadow: `0 0 100px ${colorHex}50`
-                }}
-              />
-            </div>
-
-            {/* Portrait Frame */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="relative z-10 w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] flex items-end justify-center rounded-full overflow-hidden border-2 border-white/5 shadow-2xl bg-[#08090d]/60 backdrop-blur-[2px]"
-              style={{
-                boxShadow: `0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px ${colorHex}15`
-              }}
-            >
-              {/* Backside violet backdrop in the container */}
-              <div 
-                className="absolute inset-x-0 top-1/4 bottom-0 filter blur-xl opacity-20"
-                style={{ background: `radial-gradient(circle, ${colorHex}a0 0%, transparent 80%)` }}
-              />
-
-              {/* Developer Image */}
-              <img
-                src="/src/assets/images/aman_portrait_matching_glow_1779969253455.png"
-                alt="Aman Kumar Portrait"
-                className="w-full h-full object-cover origin-bottom scale-[1.05] transition-transform duration-700 hover:scale-[1.1]"
-                referrerPolicy="no-referrer"
-              />
-
-              {/* Smooth linear gradient overlay at the bottom to blend image cleanly */}
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#06070a] via-[#06070a]/70 to-transparent z-10 pointer-events-none" />
-            </motion.div>
-
-          </div>
-
-          {/* COLUMN 3: RIGHT-HAND INTRO (lg:col-span-4) */}
-          <div className="lg:col-span-4 flex flex-col justify-center text-left lg:text-left space-y-6 lg:pl-6 order-3">
-            
-            {/* custom theme tag */}
-            <motion.p
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-xs font-mono uppercase tracking-[0.25em]"
-              style={{ color: colorHex }}
-            >
-              Creative
-            </motion.p>
-
-            {/* title */}
-            <div className="space-y-1">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-white leading-[1.05]"
-              >
-                Developer
-              </motion.h2>
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-transparent bg-clip-text leading-[1.05]"
-                style={{
-                  backgroundImage: `linear-gradient(to right, #ffffff, ${colorHex}d0)`
-                }}
-              >
-                &amp; Designer
-              </motion.h2>
-            </div>
-
-            {/* description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-sm sm:text-base text-slate-400 leading-relaxed font-sans font-light max-w-sm"
-            >
-              Passionate about building exceptional web experiences with modern technologies and clean code.
-            </motion.p>
-
-            {/* view work link */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="pt-2"
-            >
-              <button
-                onClick={handleScrollToProjects}
-                className="group inline-flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 px-6 py-4 text-xs tracking-widest font-bold uppercase text-slate-100 transition-all hover:scale-102 active:scale-98"
-                style={{
-                  borderColor: `${colorHex}15`
-                }}
-              >
-                View My Work
-                <ArrowRight 
-                  className="h-4 w-4 text-slate-400 group-hover:text-white transition-all transform group-hover:translate-x-1"
-                  style={{ color: colorHex }}
-                />
-              </button>
-            </motion.div>
-
-            {/* Open to Work floating card on bottom right */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.45 }}
-              className="pt-6 border-t border-white/5 flex flex-col space-y-1.5"
-            >
-              <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-white font-mono">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <span>Available for new opportunities</span>
-              </div>
-              <span className="text-sm font-black uppercase tracking-wider font-display" style={{ color: colorHex }}>
-                Open to work
-              </span>
-            </motion.div>
-
-          </div>
-
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-mono tracking-wider border bg-white/[0.02]/30 backdrop-blur-sm"
+            style={{
+              borderColor: `${colorHex}20`,
+              boxShadow: `0 0 15px ${colorHex}05`
+            }}
+          >
+            <span className="flex h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-slate-300 font-medium font-mono font-bold">Google Cloud Facilitator ✨</span>
+          </motion.div>
         </div>
+
+        {/* Hero Headline & Sub-headline */}
+        <div className="space-y-5 max-w-4xl pt-2">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-1"
+          >
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black font-display tracking-tight text-white leading-none">
+              Aman Kumar
+            </h1>
+            <h2 
+              className="text-2xl sm:text-4xl lg:text-5xl font-extrabold font-display tracking-tight text-transparent bg-clip-text leading-tight mt-1"
+              style={{
+                backgroundImage: `linear-gradient(to right, #ffffff, ${colorHex}, #ffffff)`
+              }}
+            >
+              AI Engineer &amp; Full-Stack Developer
+            </h2>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-base sm:text-lg md:text-xl text-slate-400 leading-relaxed font-sans font-light max-w-2xl mx-auto"
+          >
+            B.Tech Candidate in A.I. &amp; Machine Learning. Crafting responsive web architectures and Python automation analytics. Specialized in model parameters training, Generative AI payloads, and elegant, high-impact digital products.
+          </motion.p>
+        </div>
+
+        {/* Core Actions & Interactive Row */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+        >
+          <button
+            onClick={() => setShowResume(true)}
+            className="group flex items-center justify-center gap-2 rounded-2xl px-8 py-4 font-bold text-xs uppercase tracking-widest text-black shadow-lg transition-all hover:scale-[1.03] active:scale-[0.98] w-full sm:w-auto"
+            style={{
+              backgroundColor: colorHex,
+              boxShadow: `0 10px 30px ${colorHex}30`
+            }}
+          >
+            <FileText className="h-4 w-4" />
+            Resume / CV
+          </button>
+
+          <button
+            onClick={handleScrollToProjects}
+            className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 px-8 py-4 text-xs tracking-widest font-bold uppercase text-slate-100 transition-all hover:scale-102 active:scale-98 w-full sm:w-auto"
+            style={{
+              borderColor: `${colorHex}15`
+            }}
+          >
+            View Projects
+            <ArrowRight 
+              className="h-4 w-4 text-slate-400 group-hover:text-white transition-all transform group-hover:translate-x-1"
+              style={{ color: colorHex }}
+            />
+          </button>
+
+          {/* Inline Social Icons */}
+          <div className="flex items-center gap-2 pt-2 sm:pt-0 pl-0 sm:pl-4 sm:border-l border-white/10">
+            {socials.map((soc, idx) => (
+              <a
+                key={idx}
+                href={soc.url}
+                target={soc.url !== '#' ? '_blank' : '_self'}
+                rel="noreferrer referrer"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/5 bg-[#0a0b10] text-slate-400 transition-all hover:border-white/10 hover:text-white hover:scale-105"
+                title={soc.label}
+                aria-label={`Visit Aman's ${soc.label}`}
+              >
+                {soc.icon}
+              </a>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* 4-Column Professional Stats Board */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full pt-6"
+        >
+          {/* Card 1: URV Spain */}
+          <div 
+            className="rounded-2xl border border-white/5 bg-[#0a0b10]/40 p-5 text-left flex flex-col justify-between space-y-4 hover:border-white/10 transition-all duration-300 relative group overflow-hidden"
+            style={{ 
+              boxShadow: `0 10px 30px rgba(0,0,0,0.5), inset 0 0 12px ${colorHex}03`,
+              background: `linear-gradient(135deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.005) 100%)`
+            }}
+          >
+            <div className="flex items-center justify-between">
+              <span className="p-2 rounded-xl bg-white/[0.03] border border-white/5 text-slate-400 group-hover:text-white transition-colors">
+                <Globe className="h-4 w-4" style={{ color: colorHex }} />
+              </span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-bold">Mar 2026</span>
+            </div>
+            <div>
+              <h3 className="text-white text-sm font-bold font-display">Academic Intern</h3>
+              <p className="text-xs text-slate-400 mt-1.5 leading-relaxed font-sans font-light">
+                Exchange student at <strong>URV, Spain 🇪🇸</strong>. Engaged in computer engineering paradigms, deep neural networks, and model deployments.
+              </p>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/[0.01] pointer-events-none" />
+          </div>
+
+          {/* Card 2: Google Ambassador */}
+          <div 
+            className="rounded-2xl border border-white/5 bg-[#0a0b10]/40 p-5 text-left flex flex-col justify-between space-y-4 hover:border-white/10 transition-all duration-300 relative group overflow-hidden"
+            style={{ 
+              boxShadow: `0 10px 30px rgba(0,0,0,0.5), inset 0 0 12px ${colorHex}03`,
+              background: `linear-gradient(135deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.005) 100%)`
+            }}
+          >
+            <div className="flex items-center justify-between">
+              <span className="p-2 rounded-xl bg-white/[0.03] border border-white/5 text-slate-400 group-hover:text-white transition-colors">
+                <Award className="h-4 w-4" style={{ color: colorHex }} />
+              </span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-bold">Google Amb.</span>
+            </div>
+            <div>
+              <h3 className="text-white text-sm font-bold font-display">Cloud Facilitator</h3>
+              <p className="text-xs text-slate-400 mt-1.5 leading-relaxed font-sans font-light">
+                Hosting workshops and interactive labs on <strong>Generative AI Studio</strong> parameters, model configurations, and tuning techniques.
+              </p>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/[0.01] pointer-events-none" />
+          </div>
+
+          {/* Card 3: Academic standing */}
+          <div 
+            className="rounded-2xl border border-white/5 bg-[#0a0b10]/40 p-5 text-left flex flex-col justify-between space-y-4 hover:border-white/10 transition-all duration-300 relative group overflow-hidden"
+            style={{ 
+              boxShadow: `0 10px 30px rgba(0,0,0,0.5), inset 0 0 12px ${colorHex}03`,
+              background: `linear-gradient(135deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.005) 100%)`
+            }}
+          >
+            <div className="flex items-center justify-between">
+              <span className="p-2 rounded-xl bg-white/[0.03] border border-white/5 text-slate-400 group-hover:text-white transition-colors">
+                <Briefcase className="h-4 w-4" style={{ color: colorHex }} />
+              </span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-bold">7.32 CGPA</span>
+            </div>
+            <div>
+              <h3 className="text-white text-sm font-bold font-display">B.Tech AI &amp; ML</h3>
+              <p className="text-xs text-slate-400 mt-1.5 leading-relaxed font-sans font-light">
+                Undergraduate candidate focused on algorithmic data frameworks, probabilistic logic, and standard neural networks at UCER.
+              </p>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/[0.01] pointer-events-none" />
+          </div>
+
+          {/* Card 4: Certifications & Technologies */}
+          <div 
+            className="rounded-2xl border border-white/5 bg-[#0a0b10]/40 p-5 text-left flex flex-col justify-between space-y-4 hover:border-white/10 transition-all duration-300 relative group overflow-hidden"
+            style={{ 
+              boxShadow: `0 10px 30px rgba(0,0,0,0.5), inset 0 0 12px ${colorHex}03`,
+              background: `linear-gradient(135deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.005) 100%)`
+            }}
+          >
+            <div className="flex items-center justify-between">
+              <span className="p-2 rounded-xl bg-white/[0.03] border border-white/5 text-slate-400 group-hover:text-white transition-colors">
+                <ShieldCheck className="h-4 w-4" style={{ color: colorHex }} />
+              </span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-bold">5+ Certs</span>
+            </div>
+            <div>
+              <h3 className="text-white text-sm font-bold font-display">Generative AI Focus</h3>
+              <p className="text-xs text-slate-400 mt-1.5 leading-relaxed font-sans font-light">
+                Equipped with professional achievements in Prompt Engineering, automated Python utilities, and secure full-stack applications.
+              </p>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/[0.01] pointer-events-none" />
+          </div>
+        </motion.div>
+
+        {/* Dynamic Technologies Line */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5 pt-6 border-t border-white/5 w-full max-w-4xl"
+        >
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Core Stack</span>
+          {['Python', 'Generative AI Studio', 'TensorFlow', 'ReactJS', 'TypeScript', 'Tailwind CSS', 'Pandas & Matplotlib'].map((tech) => (
+            <span 
+              key={tech} 
+              className="text-xs font-mono font-medium tracking-wide text-slate-400 hover:text-white transition-colors"
+            >
+              {tech}
+            </span>
+          ))}
+        </motion.div>
 
       </div>
 
